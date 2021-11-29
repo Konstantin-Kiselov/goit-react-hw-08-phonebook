@@ -10,9 +10,9 @@ export const changeFilter = createAction('contacts/changeFilter');
 // );
 // export const fetchContactsError = createAction('contacts/fetchContactsError');
 
-export const addContactRequest = createAction('contacts/addContactRequest');
-export const addContactSuccess = createAction('contacts/addContactSuccess');
-export const addContactError = createAction('contacts/addContactError');
+// export const addContactRequest = createAction('contacts/addContactRequest');
+// export const addContactSuccess = createAction('contacts/addContactSuccess');
+// export const addContactError = createAction('contacts/addContactError');
 
 // export const deleteContactRequest = createAction(
 //   'contacts/deleteContactRequest'

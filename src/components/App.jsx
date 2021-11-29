@@ -1,13 +1,27 @@
 // import { useEffect, useState } from 'react';
-import Container from './Container/Container';
+// import Container from './Container/Container';
 import Section from './Section/Section';
 import ContactList from './ContactList/ContactList';
 import Form from './Form/Form';
 import Filter from './Filter/Filter';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import { Container } from 'react-bootstrap';
+
 export default function App() {
   return (
     <Container>
+      <Navbar bg="dark" variant="dark">
+        <Container>
+          <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+          <Nav className="me-auto">
+            <Nav.Link href="#features">Features</Nav.Link>
+            <Nav.Link href="#pricing">Pricing</Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
       <Section title="Phonebook">
         <Form />
       </Section>
