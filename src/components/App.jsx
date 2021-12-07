@@ -1,34 +1,52 @@
 // import { useEffect, useState } from 'react';
-// import Container from './Container/Container';
-import Section from './Section/Section';
-import ContactList from './ContactList/ContactList';
-import Form from './Form/Form';
-import Filter from './Filter/Filter';
+import { lazy, Suspense } from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import { Container } from 'react-bootstrap';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import Navbar from 'react-bootstrap/Navbar';
+// import Nav from 'react-bootstrap/Nav';
+// import { Container } from 'react-bootstrap';
+
+import AppBar from './AppBar';
+import Container from './Container/Container';
+
+const HomeView = lazy(() => import('../views/HomeView'));
+const ContactsView = lazy(() => import('../views/ContactsView'));
+const RegisterView = lazy(() => import('../views/RegisterView'));
+const LoginView = lazy(() => import('../views/LoginView'));
 
 export default function App() {
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(authOperations.fetchCurrentUser());
+  // }, [dispatch]);
+
   return (
     <Container>
-      <Navbar bg="dark" variant="dark">
-        <Container>
-          <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar>
-      <Section title="Phonebook">
-        <Form />
-      </Section>
-      <Section title="Contacts">
-        <Filter />
-        <ContactList />
-      </Section>
+      <AppBar />
+
+      <Suspense fallback={<h1>ЗАГРУЖАЕМ...</h1>}>
+        <Switch>
+          <Route path="/" exact>
+            <HomeView />
+          </Route>
+
+          <Route path="/register">
+            <RegisterView />
+          </Route>
+
+          <Route path="/login">
+            <LoginView />
+          </Route>
+
+          <Route path="/contacts">
+            <ContactsView />
+          </Route>
+
+          <Redirect to="/" />
+        </Switch>
+      </Suspense>
     </Container>
   );
 }
@@ -102,3 +120,13 @@ export default function App() {
 // };
 
 // const visibleContacts = getVisibleContacts();
+
+//  <Navbar bg="dark" variant="dark">
+//    <Container>
+//      <Navbar.Brand href="/">Navbar</Navbar.Brand>
+//      <Nav className="me-auto">
+//        <Nav.Link to="/login">Login</Nav.Link>
+//        <Nav.Link href="/register">Registration</Nav.Link>
+//      </Nav>
+//    </Container>
+//  </Navbar>;
