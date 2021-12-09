@@ -1,5 +1,5 @@
-// import { useEffect, useState } from 'react';
-import { lazy, Suspense } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
+import { useDispatch } from 'react-redux';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
@@ -9,6 +9,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 import AppBar from './AppBar';
 import Container from './Container/Container';
+import { authOperations } from '../redux/auth';
 
 const HomeView = lazy(() => import('../views/HomeView'));
 const ContactsView = lazy(() => import('../views/ContactsView'));
@@ -16,11 +17,11 @@ const RegisterView = lazy(() => import('../views/RegisterView'));
 const LoginView = lazy(() => import('../views/LoginView'));
 
 export default function App() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(authOperations.fetchCurrentUser());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
 
   return (
     <Container>

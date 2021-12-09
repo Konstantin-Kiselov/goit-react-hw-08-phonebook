@@ -29,17 +29,6 @@ const ContactList = ({ contacts, onDeleteContact, isLoading }) => {
           ))}
         </ul>
       )}
-      {/* {isLoading && <h1>Загружаем...</h1>}
-      <ul className={s.list}>
-        {contacts.map(({ id, name, number, phone }) => (
-          <Contact
-            key={id}
-            name={name}
-            number={number || phone}
-            onClick={() => onDeleteContact(id)}
-          />
-        ))}
-      </ul> */}
     </>
   );
 };
