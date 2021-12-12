@@ -16,7 +16,7 @@ const ContactList = ({ contacts, onDeleteContact, isLoading }) => {
   return (
     <>
       {isLoading ? (
-        <h1>Загружаем...</h1>
+        <h1>Loading...</h1>
       ) : (
         <ul className={s.list}>
           {contacts.map(({ id, name, number, phone }) => (

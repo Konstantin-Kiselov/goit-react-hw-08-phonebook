@@ -16,7 +16,7 @@ import {
 
 const items = createReducer([], {
   [fetchContacts.fulfilled]: (_, { payload }) => payload,
-  [addContact.fulfilled]: (state, { payload }) => [...state, payload],
+  [addContact.fulfilled]: (state, { payload }) => [payload, ...state],
   [deleteContact.fulfilled]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
 });
@@ -25,9 +25,11 @@ const loading = createReducer(false, {
   [fetchContacts.pending]: () => true,
   [fetchContacts.fulfilled]: () => false,
   [fetchContacts.rejected]: () => false,
+
   [addContact.pending]: () => true,
   [addContact.fulfilled]: () => false,
   [addContact.rejected]: () => false,
+
   [deleteContact.pending]: () => true,
   [deleteContact.fulfilled]: () => false,
   [deleteContact.rejected]: () => false,
@@ -40,8 +42,10 @@ const filter = createReducer('', {
 const error = createReducer(null, {
   [fetchContacts.rejected]: (_, { payload }) => payload,
   [fetchContacts.fulfilled]: () => null,
+
   [addContact.rejected]: (_, { payload }) => payload,
   [addContact.fulfilled]: () => null,
+
   [deleteContact.rejected]: (_, { payload }) => payload,
   [deleteContact.fulfilled]: () => null,
 });

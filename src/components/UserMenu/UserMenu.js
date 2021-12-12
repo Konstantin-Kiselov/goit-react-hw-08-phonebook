@@ -18,13 +18,13 @@ const styles = {
 
 export default function UserMenu() {
   const dispatch = useDispatch();
-  const name = useSelector(authSelectors.getUsername);
+  const email = useSelector(authSelectors.getUserEmail);
   const avatar = defaultAvatar;
 
   return (
     <div style={styles.container}>
       <img src={avatar} alt="" width="32" style={styles.avatar} />
-      <span style={styles.name}>Welcome, {name}</span>
+      <span style={styles.name}>Welcome, {email}</span>
       <button type="button" onClick={() => dispatch(authOperations.logOut())}>
         Log Out
       </button>
