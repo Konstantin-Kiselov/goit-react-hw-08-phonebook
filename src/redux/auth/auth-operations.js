@@ -24,8 +24,9 @@ const register = createAsyncThunk('auth/register', async credentials => {
     return data;
   } catch (error) {
     // Добавить обработку ошибки error.message
-    console.log(error);
-    return error;
+    alert('This user is already exist!');
+
+    return Promise.reject(new Error(error));
   }
 });
 
@@ -42,7 +43,9 @@ const logIn = createAsyncThunk('auth/login', async credentials => {
     return data;
   } catch (error) {
     // Добавить обработку ошибки error.message
-    console.log(error);
+    alert('Invalid User or Password');
+
+    return Promise.reject(new Error(error));
   }
 });
 
@@ -58,6 +61,7 @@ const logOut = createAsyncThunk('auth/logout', async () => {
   } catch (error) {
     // Добавить обработку ошибки error.message
     console.log(error);
+    return Promise.reject(new Error(error));
   }
 });
 /*
@@ -87,6 +91,7 @@ const fetchCurrentUser = createAsyncThunk(
     } catch (error) {
       // Добавить обработку ошибки error.message
       console.log(error);
+      return Promise.reject(new Error(error));
     }
   }
 );

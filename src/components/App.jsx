@@ -7,7 +7,7 @@ import { Switch, Redirect } from 'react-router-dom';
 // import Nav from 'react-bootstrap/Nav';
 // import { Container } from 'react-bootstrap';
 
-import AppBar from './AppBar';
+import AppBar from './AppBar/AppBar';
 import Container from './Container/Container';
 import { authOperations, authSelectors } from '../redux/auth';
 import PublicRoute from './PublicRoute';
@@ -15,8 +15,8 @@ import PrivateRoute from './PrivateRoute';
 
 const HomeView = lazy(() => import('../views/HomeView'));
 const ContactsView = lazy(() => import('../views/ContactsView'));
-const RegisterView = lazy(() => import('../views/RegisterView'));
-const LoginView = lazy(() => import('../views/LoginView'));
+const RegisterView = lazy(() => import('../views/RegisterView/RegisterView'));
+const LoginView = lazy(() => import('../views/LoginView/LoginView'));
 
 export default function App() {
   const dispatch = useDispatch();
@@ -31,7 +31,11 @@ export default function App() {
       <Container>
         <AppBar />
 
-        <Suspense fallback={<h1>Loading...</h1>}>
+        <Suspense
+          fallback={
+            <h1 style={{ textAlign: 'center', marginTop: 20 }}>Loading...</h1>
+          }
+        >
           <Switch>
             <PublicRoute path="/" exact>
               <HomeView />
