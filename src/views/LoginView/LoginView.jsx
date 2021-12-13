@@ -1,28 +1,15 @@
 import { useState } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { authOperations } from '../redux/auth';
+import { useDispatch } from 'react-redux';
+import { authOperations } from '../../redux/auth';
+import s from './LoginView.module.css';
 
-const styles = {
-  form: {
-    width: 320,
-  },
-  label: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginBottom: 15,
-  },
-};
-
-export default function RegisterView() {
-  // const dispatch = useDispatch();
-  const [name, setName] = useState('');
+export default function LoginView() {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
-      case 'name':
-        return setName(value);
       case 'email':
         return setEmail(value);
       case 'password':
@@ -34,43 +21,41 @@ export default function RegisterView() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    // dispatch(authOperations.register({ name, email, password }));
-    setName('');
+    dispatch(authOperations.logIn({ email, password }));
     setEmail('');
     setPassword('');
   };
 
   return (
     <div>
-      <h1>Create an account</h1>
+      <h1 style={{ textAlign: 'center', marginTop: 20 }}>Hello, Sign In</h1>
       <br />
-      <form onSubmit={handleSubmit} style={styles.form} autoComplete="off">
-        <label style={styles.label}>
-          Name
-          <input type="text" name="name" value={name} onChange={handleChange} />
-        </label>
-
-        <label style={styles.label}>
+      <form onSubmit={handleSubmit} className={s.form} autoComplete="off">
+        <label className={s.label}>
           E-mail
           <input
             type="email"
             name="email"
             value={email}
             onChange={handleChange}
+            className={s.input}
           />
         </label>
 
-        <label style={styles.label}>
+        <label className={s.label}>
           Password
           <input
             type="password"
             name="password"
             value={password}
             onChange={handleChange}
+            className={s.input}
           />
         </label>
 
-        <button type="submit">Continue</button>
+        <button type="submit" className={s.button}>
+          Continue
+        </button>
       </form>
     </div>
   );
